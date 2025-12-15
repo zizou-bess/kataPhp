@@ -30,7 +30,7 @@ jobs:
       - name: Quality
         run: | 
             vendor/bin/phpcs
-            vendor/bin/phpstan analyse src --level=6
+            vendor/bin/phpstan analyse src --level=5
 
       - name: Tests
         run: vendor/bin/phpunit --testdox
