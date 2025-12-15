@@ -33,4 +33,4 @@ jobs:
             vendor/bin/phpstan analyse src --level=6
 
       - name: Tests
-        run: vendor/bin/phpunit
+        run: vendor/bin/phpunit --testdox
