@@ -1,0 +1,9 @@
+# Composer
+/vendor/
+
+# PHPUnit
+/.phpunit.result.cache
+
+# IDE / OS
+/.idea/
+/.vscode/
