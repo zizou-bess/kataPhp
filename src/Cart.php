@@ -42,9 +42,7 @@ final class Cart
         $subtotal -= $discount ;
         $vat = (int) round($subtotal * 0.20);
 
-        $ttc = (int) round($subtotal + $vat);
-
-        return (int) $ttc;
+        return (int) round($subtotal + $vat);
     }
 
     public function rawLines(): array
