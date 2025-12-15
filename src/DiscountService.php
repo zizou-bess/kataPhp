@@ -13,10 +13,10 @@ final class DiscountService
     {
         $local = $now->setTimezone(new DateTimeZone('Europe/Paris'));
 
-        if ((int)$local->format('m') === 10 && (int)$local->format('N') === 5) {
+        if ((int)$local->format('m') === 11 && (int)$local->format('N') === 5) {
             $nextFriday = $local->modify('+7 days');
 
-            if ((int)$nextFriday->format('m') !== 10) {
+            if ((int)$nextFriday->format('m') !== 11) {
                 return 20;
             }
         }
