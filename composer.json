@@ -1,6 +1,8 @@
 {
   "name": "whai/cart-pricing-kata",
+  "description": "Technical test - Cart Pricing Kata",
   "type": "project",
+  "license": "proprietary",
   "require": {
     "php": "^8.1"
   },
