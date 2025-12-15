@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App;
@@ -25,20 +26,24 @@ final class Cart
             $this->lines[$p->getId()] = ['product' => $p, 'qty' => 0];
         }
         $this->lines[$p->getId()]['qty'] += $qty;
-        $this->cachedTotal += ($p->getPriceCents() * $qty) / 100;
+        $this->cachedTotal += ($p->getPriceCents() * $qty);
     }
 
     public function totalCents(DateTimeImmutable $now): int
     {
-        $subtotal = 0.0;
-        foreach ($this->lines as &$line) {
+        $subtotal = 0;
+        foreach ($this->lines as $line) {
             $subtotal += $line['product']->getPriceCents() * $line['qty'];
         }
-        $vat = (int) round($subtotal * 0.20);
-        $withVat = (int) round($subtotal + $vat);
+
         $discountPercent = $this->discounts->getDiscountPercent($now);
-        $discount = (int) round($withVat * ($discountPercent / 100));
-        $ttc = (int) round($withVat - $discount);
+        $discount = (int) round($subtotal * ($discountPercent / 100));
+
+        $subtotal -= $discount ;
+        $vat = (int) round($subtotal * 0.20);
+
+        $ttc = (int) round($subtotal + $vat);
+
         return (int) $ttc;
     }
 
