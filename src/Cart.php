@@ -19,8 +19,8 @@ final class Cart
 
     public function add(Product $p, int $qty): void
     {
-        if ($qty == 0) {
-            return;
+        if ($qty <= 0) {
+            throw new \InvalidArgumentException('Quantity must be greater than zero');
         }
         if (!isset($this->lines[$p->getId()])) {
             $this->lines[$p->getId()] = ['product' => $p, 'qty' => 0];
@@ -38,7 +38,7 @@ final class Cart
 
         $discountPercent = $this->discounts->getDiscountPercent($now);
         $discount = (int) round($subtotal * ($discountPercent / 100));
-        
+
         $subtotal -= $discount ;
         $vat = (int) round($subtotal * 0.20);
 

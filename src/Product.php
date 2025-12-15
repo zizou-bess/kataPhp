@@ -12,6 +12,14 @@ final class Product
 
     public function __construct(string $id, string $name, int $priceCents)
     {
+        if (trim($id) === '') {
+               throw new \InvalidArgumentException('Product ID cannot be empty');
+        }
+
+        if ($priceCents < 0) {
+            throw new \InvalidArgumentException('Product price cannot be negative');
+        }
+
         $this->id = $id;
         $this->name = $name;
         $this->priceCents = (int)$priceCents;
