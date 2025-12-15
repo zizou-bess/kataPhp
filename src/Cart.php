@@ -38,7 +38,7 @@ final class Cart
 
         $discountPercent = $this->discounts->getDiscountPercent($now);
         $discount = (int) round($subtotal * ($discountPercent / 100));
-
+        
         $subtotal -= $discount ;
         $vat = (int) round($subtotal * 0.20);
 
